@@ -20,6 +20,10 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String...strings) throws Exception {
+        // Sample Event -- > stDate, endDate, eventName: Hackathon, eventDescr: A hackathon is a ...
+        // eventPhoto: photo, user: Kenisha
+
+
         roleRepository.save(new Role("USER"));
         roleRepository.save(new Role("ADMIN"));
         Role adminRole = roleRepository.findByRole("ADMIN");

@@ -4,10 +4,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Set;
 
 @Entity
 @Table(name = "User_Data")
 public class User {
+    // default User fields
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -35,6 +37,17 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Collection<Role> roles;
 
+    // additional fields
+
+    @OneToMany
+    private Set<Event> events;
+
+    @OneToMany
+    private Set<Project> projects;
+
+
+    // constructors
+
     public User() {
     }
 
@@ -46,6 +59,8 @@ public class User {
         this.setEnabled(enabled);
         this.setUsername(username);
     }
+
+    // getters and setters
 
     public long getId() {
         return id;
@@ -110,5 +125,21 @@ public class User {
 
     public void setRoles(Collection<Role> roles) {
         this.roles = roles;
+    }
+
+    public Set<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(Set<Event> events) {
+        this.events = events;
+    }
+
+    public Set<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(Set<Project> projects) {
+        this.projects = projects;
     }
 }
